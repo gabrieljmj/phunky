@@ -1,0 +1,111 @@
+@font-face {
+  font-family: SourceSansPro;
+  src: url("../../fonts/SourceSansPro-Regular.ttf"); }
+
+* {
+  outline: none; }
+
+body {
+  font-family: SourceSansPro;
+  color: #262626;
+  background: #e7e7e7;
+  margin: 0; }
+
+/**
+ * Song details
+ */
+#song-details {
+  padding: 10px;
+  float: left; }
+  #song-details #song-name {
+    font-size: 36px;
+    font-weight: bold; }
+  #song-details #artist-name {
+    font-size: 30px;
+    color: #333; }
+
+#rights {
+  float: right;
+  padding: 10px;
+  text-align: right; }
+  #rights .mxm-logo {
+    -webkit-filter: grayscale(1); }
+  #rights .mxm-logo:hover {
+    -webkit-filter: grayscale(0); }
+
+/**
+ * Lyrics
+ */
+#lyrics-container {
+  clear: both;
+  display: none; }
+  #lyrics-container #options {
+    width: 136px;
+    margin: 0 auto; }
+    #lyrics-container #options .tab-btn {
+      height: 30px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      color: #262626;
+      background: white; }
+    #lyrics-container #options #featured-tab-btn {
+      border-radius: 4px 0 0 4px; }
+    #lyrics-container #options #complete-tab-btn {
+      border-radius: 0 4px 4px 0; }
+    #lyrics-container #options .tab-btn:active, #lyrics-container #options .tab-btn-active {
+      background: #e7e7e7; }
+  #lyrics-container #featured-lyrics #curr {
+    background: #262626;
+    color: #e7e7e7; }
+  #lyrics-container #featured-lyrics .verse {
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: center; }
+  #lyrics-container #featured-lyrics .regular-verse {
+    font-size: 42px; }
+  #lyrics-container #featured-lyrics .featured {
+    font-size: 48px;
+    font-weight: bold; }
+  #lyrics-container #complete-lyrics {
+    width: 100%;
+    text-align: center; }
+    #lyrics-container #complete-lyrics #lyrics-pos {
+      display: inline-block;
+      margin: 0 auto; }
+    #lyrics-container #complete-lyrics .verse {
+      font-size: 20px; }
+    #lyrics-container #complete-lyrics .featured-verse {
+      font-weight: bold;
+      font-size: 30px; }
+
+/**
+ * Footer
+ */
+footer {
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px; }
+
+/** 
+ * Warning
+ */
+#warning {
+  text-align: center;
+  display: none; }
+
+.warning {
+  color: #cc0000;
+  font-size: 48px;
+  font-weight: bold; }
+
+/**
+ * Global
+ */
+.invisible {
+  display: none; }
+
+.small {
+  font-size: 12px; }
+
+#wrapper {
+  min-height: calc(100vh - 70px); }
