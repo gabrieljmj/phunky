@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>phunky</title>
+
+  <link rel="stylesheet" href="assets/dist/css/main.css" type="text/css">
+</head>
+<body>
+  <div id="wrapper">
+    <section id="song-details">
+      <div id="song-name"></div>
+      <div id="artist-name"></div>
+    </section>
+
+    <section id="rights">
+      <div id="mxm-logo">
+        <img class="mxm-logo" src="assets/images/mxm.png" width="36" alt="musixmatch logo" title="Lyrics provided by musixmatch">
+      </div>
+    </section>
+
+    <div id="lyrics-container" class="invisible">
+      <section id="options">
+        <button id="featured-tab-btn" class="tab-btn tab-btn-active" data-target="featured-lyrics">3 verses</button>
+        <button id="complete-tab-btn" class="tab-btn" data-target="complete-lyrics" style="margin-left: -3px; border-left: none;">All verses</button>
+      </section>
+
+      <section id="featured-lyrics" class="lyrics-subcontainer">
+        <div id="past" class="verse"></div>
+        <div id="curr" class="verse"></div>
+        <div id="next" class="verse"></div>
+      </section>
+
+      <div id="complete-lyrics" class="lyrics-subcontainer" style="display: none; margin-top: 10px;">
+        <div id="lyrics-pos"></div>
+      </div>
+    </div>
+
+    <div id="warning">
+    </div>
+  </div>
+
+  <footer>
+    <span class="medium">Sorry, but maybe lyrics are incorrect.</span>
+  </footer>
+
+    <script src="assets/dist/js/main.js"></script>
+</body>
+</html>
