@@ -10,7 +10,7 @@ module.exports = function getYouTubeVideoId(artist, trackName) {
   });
 
   var q = artist + ' ' + trackName;
-  // Only letters and numbers in search term
+  // Only letters and numbers in search query
   q = q.replace(/[^a-zA-Z0-9 ]/g, '') + ' audio';
 
   console.info('YouTube - search: ' + q);

@@ -1,3 +1,12 @@
+const lyrics = {
+  show: () => {
+    document.getElementById('lyrics-container').style.display = 'block';
+  },
+  hide: () => {
+    document.getElementById('lyrics-container').style.display = 'none';
+  }
+};
+
 module.exports = {
   add: (id, msg) => {
     return new Promise(resolve => {
@@ -12,7 +21,7 @@ module.exports = {
 
       warnings.style.display = 'block';
 
-      document.getElementById('lyrics-container').style.distplay = 'none';
+      lyrics.hide();
 
       resolve();
     });
@@ -23,9 +32,14 @@ module.exports = {
 
     if (warning) {
       warnings.removeChild(warning);
+
+      if (!warnings.hasChildNodes()) {
+        lyrics.show();
+      }
     }
   },
   removeAll: () => {
     document.getElementById('warnings').innerHTML = '';
+    lyrics.show();
   }
 };

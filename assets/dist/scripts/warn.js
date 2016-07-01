@@ -1,5 +1,14 @@
 'use strict';
 
+var lyrics = {
+  show: function show() {
+    document.getElementById('lyrics-container').style.display = 'block';
+  },
+  hide: function hide() {
+    document.getElementById('lyrics-container').style.display = 'none';
+  }
+};
+
 module.exports = {
   add: function add(id, msg) {
     return new Promise(function (resolve) {
@@ -14,7 +23,7 @@ module.exports = {
 
       warnings.style.display = 'block';
 
-      document.getElementById('lyrics-container').style.distplay = 'none';
+      lyrics.hide();
 
       resolve();
     });
@@ -25,9 +34,14 @@ module.exports = {
 
     if (warning) {
       warnings.removeChild(warning);
+
+      if (!warnings.hasChildNodes()) {
+        lyrics.show();
+      }
     }
   },
   removeAll: function removeAll() {
     document.getElementById('warnings').innerHTML = '';
+    lyrics.show();
   }
 };

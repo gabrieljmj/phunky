@@ -23,6 +23,7 @@ window.onload = function () {
     var spotifyData = void 0;
 
     localStorage.setItem('lIndex', '0');
+    localStorage.setItem('has-lyrics', '0');
 
     /**
      * Returns the song lyrics
@@ -71,34 +72,36 @@ window.onload = function () {
 
         // Check if song has changed
         if (spotifyData && spotifyData.track.track_resource.uri === res.track.track_resource.uri) {
-          setCurrentVerse();
+          if (localStorage.getItem('has-lyrics', '1')) {
+            setCurrentVerse();
 
-          var lyrics = getLyrics(),
-              lIndex = parseInt(localStorage.getItem('lIndex'));
+            var lyrics = getLyrics(),
+                lIndex = parseInt(localStorage.getItem('lIndex'));
 
-          // If is in the start of the song, show 2 verses
-          if (lIndex === 0) {
-            setLyrics(document.createElement('text'), lyrics[lIndex], lyrics[lIndex + 1]);
-            document.getElementById(lyrics[lIndex].attributes.start.value.replace('.', 'p')).classList.add('featured-verse');
-          } else {
-            var allVerses = document.querySelectorAll('.verse'),
-                verseId = lyrics[lIndex + 1].attributes.start.value.replace('.', 'p');
+            // If is in the start of the song, show 2 verses
+            if (lIndex === 0) {
+              setLyrics(document.createElement('text'), lyrics[lIndex], lyrics[lIndex + 1]);
+              document.getElementById(lyrics[lIndex].attributes.start.value.replace('.', 'p')).classList.add('featured-verse');
+            } else {
+              var allVerses = document.querySelectorAll('.verse'),
+                  verseId = lyrics[lIndex + 1].attributes.start.value.replace('.', 'p');
 
-            for (var k = 0; k < allVerses.length; k++) {
-              if (allVerses[k].parentNode.parentNode === document.getElementById('lyrics-pos')) {
-                allVerses[k].classList.remove('featured-verse');
+              for (var k = 0; k < allVerses.length; k++) {
+                if (allVerses[k].parentNode.parentNode === document.getElementById('lyrics-pos')) {
+                  allVerses[k].classList.remove('featured-verse');
+                }
               }
+
+              document.getElementById(verseId).classList.add('featured-verse');
+
+              // Adds a verse with 'END' in the end
+              var nextText = document.createElement('text');
+              nextText.innerHTML = 'END';
+
+              var next = lyrics[lIndex + 2] || nextText;
+
+              setLyrics(lyrics[lIndex], lyrics[lIndex + 1], next);
             }
-
-            document.getElementById(verseId).classList.add('featured-verse');
-
-            // Adds a verse with 'END' in the end
-            var nextText = document.createElement('text');
-            nextText.innerHTML = 'END';
-
-            var next = lyrics[lIndex + 2] || nextText;
-
-            setLyrics(lyrics[lIndex], lyrics[lIndex + 1], next);
           }
         } else {
           warn.removeAll();
@@ -122,6 +125,8 @@ window.onload = function () {
                       document.getElementById('lyrics-container').classList.add('invisible');
                     });
 
+                    localStorage.setItem('has-lyrics', '0');
+
                     return;
                   }
 
@@ -129,6 +134,7 @@ window.onload = function () {
                 }
 
                 warn.remove('no-lyrics');
+                localStorage.setItem('has-lyrics', '1');
 
                 document.getElementById('lyrics-container').style.display = 'block';
                 localStorage.setItem('lyrics', mxmRes.data);
