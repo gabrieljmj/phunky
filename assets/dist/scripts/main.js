@@ -1,12 +1,12 @@
 'use strict';
 
-var musixmatch = require('./assets/dist/js/musixmatch.js'),
-    youtube = require('./assets/dist/js/youtube.js'),
+var musixmatch = require('./assets/dist/scripts/musixmatch.js'),
+    youtube = require('./assets/dist/scripts/youtube.js'),
     nodeSpotifyWebHelper = require('node-spotify-webhelper'),
     spotify = new nodeSpotifyWebHelper.SpotifyWebHelper(),
-    warn = require('./assets/dist/js/warn.js'),
-    setLyrics = require('./assets/dist/js/setlyrics.js'),
-    loadTabs = require('./assets/dist/js/tabs.js');
+    warn = require('./assets/dist/scripts/warn.js'),
+    setLyrics = require('./assets/dist/scripts/setlyrics.js'),
+    loadTabs = require('./assets/dist/scripts/tabs.js');
 
 window.onload = function () {
   /**
@@ -16,6 +16,9 @@ window.onload = function () {
     loadTabs();
   })();
 
+  /**
+   * Lyrics
+   */
   (function () {
     var spotifyData = void 0;
 
@@ -52,11 +55,11 @@ window.onload = function () {
     setInterval(function () {
       spotify.getStatus(function (err, res) {
         if (err) {
-          warn('Communication error with Spotify! Restart it!');
+          warn.add('communication-error', 'Communication error with Spotify! Restart it!');
 
           throw err;
         } else {
-          cleanWarn();
+          warn.remove('communication-error');
         }
 
         localStorage.setItem('curr', '' + res.playing_position);
@@ -69,6 +72,7 @@ window.onload = function () {
 
           if (lIndex === 0) {
             setLyrics(document.createElement('text'), lyrics[lIndex], lyrics[lIndex + 1]);
+            document.getElementById(lyrics[lIndex].attributes.start.value.replace('.', 'p')).classList.add('featured-verse');
           } else {
             var allVerses = document.querySelectorAll('.verse'),
                 verseId = lyrics[lIndex + 1].attributes.start.value.replace('.', 'p');
@@ -89,6 +93,8 @@ window.onload = function () {
             setLyrics(lyrics[lIndex], lyrics[lIndex + 1], next);
           }
         } else {
+          warn.removeAll();
+
           document.getElementById('song-name').innerHTML = res.track.track_resource.name;
           document.getElementById('artist-name').innerHTML = res.track.artist_resource.name;
           document.title = '♫ ' + res.track.track_resource.name + ' - ' + res.track.artist_resource.name + ' - phunky';
@@ -106,7 +112,7 @@ window.onload = function () {
                  */
                 if (mxmRes.data === '' || mxmRes.data === null) {
                   if (videos.length - 1 === video) {
-                    warn('No lyrics found for this song :(').then(function () {
+                    warn.add('no-lyrics', 'No lyrics found for this song :(').then(function () {
                       document.getElementById('lyrics-container').classList.add('invisible');
                     });
 
@@ -116,7 +122,7 @@ window.onload = function () {
                   catchLyrics(video + 1);
                 }
 
-                cleanWarn();
+                warn.remove('no-lyrics');
 
                 document.getElementById('lyrics-container').style.display = 'block';
                 localStorage.setItem('lyrics', mxmRes.data);

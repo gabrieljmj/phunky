@@ -87,9 +87,9 @@ footer {
   margin-top: 10px; }
 
 /** 
- * Warning
+ * Warnings
  */
-#warning {
+#warnings {
   text-align: center;
   display: none; }
 
