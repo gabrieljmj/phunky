@@ -7,6 +7,9 @@ function _buildUrlForRequest(videoId) {
   return API_URL + '/?res=' + _encodeVideoId(videoId);
 }
 
+/**
+ * I don't know certanly what this does
+ */
 function _encodeVideoId(videoId) {
   const f = function(e) {
     let r = '',

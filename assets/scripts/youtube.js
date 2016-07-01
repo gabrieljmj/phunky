@@ -8,6 +8,7 @@ module.exports = function getYouTubeVideoId(artist, trackName) {
   });
 
   let q = artist + ' ' + trackName;
+  // Only letters and numbers in search query
   q = q.replace(/[^a-zA-Z0-9 ]/g, '') + ' audio';
 
   console.info('YouTube - search: ' + q);

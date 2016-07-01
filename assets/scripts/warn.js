@@ -22,7 +22,6 @@ module.exports = {
       warning = document.getElementById('alert-' + id);
 
     if (warning) {
-      console.log(warning);
       warnings.removeChild(warning);
     }
   },

@@ -24,10 +24,11 @@ window.onload = function () {
 
     localStorage.setItem('lIndex', '0');
 
-    var cleanWarn = function cleanWarn() {
-      document.getElementById('warning').innerHTML = '';
-    };
-
+    /**
+     * Returns the song lyrics
+     *
+     * @return {Array}
+     */
     var getLyrics = function getLyrics() {
       var parser = new DOMParser(),
           doc = parser.parseFromString(localStorage.getItem('lyrics'), 'text/xml'),
@@ -36,6 +37,9 @@ window.onload = function () {
       return verses;
     };
 
+    /**
+     * Sync current song time with lyrics, updating the index of lyrics list
+     */
     var setCurrentVerse = function setCurrentVerse() {
       var lyrics = getLyrics(),
           curr = Math.round(parseFloat(localStorage.getItem('curr')) * 100) / 100,
@@ -54,6 +58,7 @@ window.onload = function () {
 
     setInterval(function () {
       spotify.getStatus(function (err, res) {
+        // Check if there's a communication error with spotifywebhelper
         if (err) {
           warn.add('communication-error', 'Communication error with Spotify! Restart it!');
 
@@ -64,12 +69,14 @@ window.onload = function () {
 
         localStorage.setItem('curr', '' + res.playing_position);
 
+        // Check if song has changed
         if (spotifyData && spotifyData.track.track_resource.uri === res.track.track_resource.uri) {
           setCurrentVerse();
 
           var lyrics = getLyrics(),
               lIndex = parseInt(localStorage.getItem('lIndex'));
 
+          // If is in the start of the song, show 2 verses
           if (lIndex === 0) {
             setLyrics(document.createElement('text'), lyrics[lIndex], lyrics[lIndex + 1]);
             document.getElementById(lyrics[lIndex].attributes.start.value.replace('.', 'p')).classList.add('featured-verse');
@@ -85,6 +92,7 @@ window.onload = function () {
 
             document.getElementById(verseId).classList.add('featured-verse');
 
+            // Adds a verse with 'END' in the end
             var nextText = document.createElement('text');
             nextText.innerHTML = 'END';
 
@@ -99,18 +107,16 @@ window.onload = function () {
           document.getElementById('artist-name').innerHTML = res.track.artist_resource.name;
           document.title = '♫ ' + res.track.track_resource.name + ' - ' + res.track.artist_resource.name + ' - phunky';
 
-          /**
-           * Searches on YouTube for a video regisred on musixmatch
-           */
+          // Searches on YouTube for a video regisred on musixmatch
           youtube(res.track.artist_resource.name, res.track.track_resource.name).then(function (videos) {
             catchLyrics(0);
 
             function catchLyrics(video) {
               musixmatch(videos[video].id.videoId).then(function (mxmRes) {
-                /**
-                 * If there's no lyrics, check for the next
-                 */
+
+                // If there's no lyrics, check for the next
                 if (mxmRes.data === '' || mxmRes.data === null) {
+                  // but if nothing is found, tell user
                   if (videos.length - 1 === video) {
                     warn.add('no-lyrics', 'No lyrics found for this song :(').then(function () {
                       document.getElementById('lyrics-container').classList.add('invisible');
@@ -127,6 +133,7 @@ window.onload = function () {
                 document.getElementById('lyrics-container').style.display = 'block';
                 localStorage.setItem('lyrics', mxmRes.data);
 
+                // Change the 'all-verses' section
                 document.getElementById('lyrics-pos').innerHTML = '';
 
                 var lyrics = getLyrics();
