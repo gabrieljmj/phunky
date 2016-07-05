@@ -6,6 +6,7 @@ const start = function() {
     width: 850,
     height: 600,
     center: true,
+    alwaysOnTop: true,
     icon: './assets/images/phunky-icon.ico'
   },
     win = new BrowserWindow(winOptions);
