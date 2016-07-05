@@ -12,7 +12,7 @@ module.exports = {
     return new Promise(resolve => {
       if (!document.getElementById('alert-' + id)) {
         const warnings = document.getElementById('warnings'),
-          warning = document.createElement('span');
+          warning = document.createElement('div');
 
         warning.setAttribute('id', 'warning-' + id);
         warning.className = 'warning';
