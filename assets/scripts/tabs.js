@@ -5,7 +5,7 @@ module.exports = function loadTabs() {
     tabs[k].addEventListener('click', (e) => {
       let allTabs = document.querySelectorAll('.tab-btn'),
         self = e.target,
-        target = self.dataset.target;
+        { target } = self.dataset;
 
       for (let i = 0; i < allTabs.length; i++) {
         let selfTarget = allTabs[i].dataset.target;
