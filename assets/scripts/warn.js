@@ -10,18 +10,20 @@ const lyrics = {
 module.exports = {
   add: (id, msg) => {
     return new Promise(resolve => {
-      const warnings = document.getElementById('warnings'),
-        warning = document.createElement('span');
+      if (!document.getElementById('alert-' + id)) {
+        const warnings = document.getElementById('warnings'),
+          warning = document.createElement('span');
 
-      warning.setAttribute('id', 'warning-' + id);
-      warning.className = 'warning';
-      warning.innerHTML = msg;
+        warning.setAttribute('id', 'warning-' + id);
+        warning.className = 'warning';
+        warning.innerHTML = msg;
 
-      warnings.appendChild(warning);
+        warnings.appendChild(warning);
 
-      warnings.style.display = 'block';
+        warnings.style.display = 'block';
 
-      lyrics.hide();
+        lyrics.hide();
+      }
 
       resolve();
     });

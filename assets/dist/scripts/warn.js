@@ -12,18 +12,20 @@ var lyrics = {
 module.exports = {
   add: function add(id, msg) {
     return new Promise(function (resolve) {
-      var warnings = document.getElementById('warnings'),
-          warning = document.createElement('span');
+      if (!document.getElementById('alert-' + id)) {
+        var warnings = document.getElementById('warnings'),
+            warning = document.createElement('span');
 
-      warning.setAttribute('id', 'warning-' + id);
-      warning.className = 'warning';
-      warning.innerHTML = msg;
+        warning.setAttribute('id', 'warning-' + id);
+        warning.className = 'warning';
+        warning.innerHTML = msg;
 
-      warnings.appendChild(warning);
+        warnings.appendChild(warning);
 
-      warnings.style.display = 'block';
+        warnings.style.display = 'block';
 
-      lyrics.hide();
+        lyrics.hide();
+      }
 
       resolve();
     });
