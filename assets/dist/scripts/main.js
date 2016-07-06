@@ -64,15 +64,15 @@ window.onload = function () {
           warn.add('communication-error', 'Communication error with Spotify! Restart it!');
 
           throw err;
-        } else {
-          warn.remove('communication-error');
         }
+
+        warn.remove('communication-error');
 
         localStorage.setItem('curr', '' + res.playing_position);
 
         // Check if song has changed
         if (spotifyData && spotifyData.track.track_resource.uri === res.track.track_resource.uri) {
-          if (localStorage.getItem('has-lyrics', '1')) {
+          if (localStorage.getItem('has-lyrics') === '1') {
             setCurrentVerse();
 
             var lyrics = getLyrics(),
