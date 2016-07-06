@@ -27,6 +27,8 @@
     "electron-builder": "^5.10.2"
   },
   "scripts": {
+    "start": "electron main.js",
+
     "clean": "rm -rf ./dist",
     "clean:osx": "rm -rf ./dist/osx",
     "clean:win": "rm -rf ./dist/win",

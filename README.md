@@ -22,6 +22,10 @@ Create a API key for browser without domain [here](https://console.developers.go
 
 [Install electron](http://electron.atom.io/) and run
 ```cli
+$ npm start
+```
+or
+```cli
 $ electron main.js
 ```
 
