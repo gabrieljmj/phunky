@@ -26,7 +26,7 @@ $ npm start
 ```
 or
 ```cli
-$ electron main.js
+$ electron app/main.js
 ```
 
 ## License
