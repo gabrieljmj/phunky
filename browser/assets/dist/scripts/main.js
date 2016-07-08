@@ -1,12 +1,13 @@
 'use strict';
 
-var musixmatch = require('./assets/dist/scripts/musixmatch.js'),
-    youtube = require('./assets/dist/scripts/youtube.js'),
+var Scripts = './assets/dist/scripts',
+    musixmatch = require(Scripts + '/musixmatch.js'),
+    youtube = require(Scripts + '/youtube.js'),
     nodeSpotifyWebHelper = require('node-spotify-webhelper'),
     spotify = new nodeSpotifyWebHelper.SpotifyWebHelper(),
-    warn = require('./assets/dist/scripts/warn.js'),
-    setLyrics = require('./assets/dist/scripts/setlyrics.js'),
-    loadTabs = require('./assets/dist/scripts/tabs.js');
+    warn = require(Scripts + '/warn.js'),
+    setLyrics = require(Scripts + '/setlyrics.js'),
+    loadTabs = require(Scripts + '/tabs.js');
 
 window.onload = function () {
   /**

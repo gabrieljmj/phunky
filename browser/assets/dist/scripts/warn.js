@@ -12,7 +12,7 @@ var lyrics = {
 module.exports = {
   add: function add(id, msg) {
     return new Promise(function (resolve) {
-      if (!document.getElementById('alert-' + id)) {
+      if (!document.getElementById('warning-' + id)) {
         var warnings = document.getElementById('warnings'),
             warning = document.createElement('div');
 
@@ -32,7 +32,7 @@ module.exports = {
   },
   remove: function remove(id) {
     var warnings = document.getElementById('warnings'),
-        warning = document.getElementById('alert-' + id);
+        warning = document.getElementById('warning-' + id);
 
     if (warning) {
       warnings.removeChild(warning);

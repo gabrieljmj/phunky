@@ -1,7 +1,7 @@
 'use strict';
 
 var googleapi = require('googleapis'),
-    client_id = require('../../../config.json').clients.youtube;
+    client_id = require('../../../../config.json').clients.youtube;
 
 module.exports = function getYouTubeVideoId(artist, trackName) {
   var youtube = googleapi.youtube({
@@ -31,5 +31,5 @@ module.exports = function getYouTubeVideoId(artist, trackName) {
 
       resolve(data.items);
     });
-  });;
+  });
 };

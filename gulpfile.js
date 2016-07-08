@@ -3,8 +3,8 @@ const gulp = require('gulp'),
   sass = require('gulp-sass');
 
 const paths = {
-  scripts: ['./assets/scripts/*.js'],
-  styles: ['./assets/styles/*.scss']
+  scripts: ['./browser/assets/scripts/*.js'],
+  styles: ['./browser/assets/styles/*.scss']
 };
 
 /**
@@ -12,17 +12,17 @@ const paths = {
  */
 gulp.task('build:es6', () => {
   gulp.src(paths.scripts)
-    .pipe(gulp.dest('./assets/dist/scripts'))
+    .pipe(gulp.dest('./browser/assets/dist/scripts'))
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(gulp.dest('./assets/dist/scripts'));
+    .pipe(gulp.dest('./browser/assets/dist/scripts'));
 });
 
 gulp.task('build:sass', () => {
   gulp.src(paths.styles)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./assets/dist/styles'));
+    .pipe(gulp.dest('./browser/assets/dist/styles'));
 });
 
 gulp.task('watch', () => {

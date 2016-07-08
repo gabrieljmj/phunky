@@ -10,7 +10,7 @@ const lyrics = {
 module.exports = {
   add: (id, msg) => {
     return new Promise(resolve => {
-      if (!document.getElementById('alert-' + id)) {
+      if (!document.getElementById('warning-' + id)) {
         const warnings = document.getElementById('warnings'),
           warning = document.createElement('div');
 
@@ -30,7 +30,7 @@ module.exports = {
   },
   remove: id => {
     const warnings = document.getElementById('warnings'),
-      warning = document.getElementById('alert-' + id);
+      warning = document.getElementById('warning-' + id);
 
     if (warning) {
       warnings.removeChild(warning);
