@@ -7,7 +7,7 @@ const lyrics = {
   }
 };
 
-module.exports = {
+export default {
   add: (id, msg) => {
     return new Promise(resolve => {
       if (!document.getElementById('warning-' + id)) {

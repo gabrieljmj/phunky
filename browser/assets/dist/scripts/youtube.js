@@ -1,10 +1,26 @@
 'use strict';
 
-var googleapi = require('googleapis'),
-    client_id = require('../../../../config.json').clients.youtube;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-module.exports = function getYouTubeVideoId(artist, trackName) {
-  var youtube = googleapi.youtube({
+var _googleapis = require('googleapis');
+
+var _googleapis2 = _interopRequireDefault(_googleapis);
+
+var _config = require('../../../../config.json');
+
+var _config2 = _interopRequireDefault(_config);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var client_id = _config2.default.clients.youtube;
+
+// Import with JSON :/
+
+
+function getYouTubeVideoId(artist, trackName) {
+  var youtube = _googleapis2.default.youtube({
     version: 'v3',
     auth: client_id
   });
@@ -33,3 +49,5 @@ module.exports = function getYouTubeVideoId(artist, trackName) {
     });
   });
 };
+
+exports.default = getYouTubeVideoId;

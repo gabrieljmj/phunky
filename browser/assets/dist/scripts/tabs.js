@@ -1,6 +1,9 @@
 'use strict';
 
-module.exports = function loadTabs() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function loadTabs() {
   var tabs = document.querySelectorAll('.tab-btn');
 
   for (var k = 0; k < tabs.length; k++) {
@@ -22,3 +25,5 @@ module.exports = function loadTabs() {
     });
   }
 };
+
+exports.default = loadTabs;

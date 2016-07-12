@@ -3,15 +3,17 @@ function getRegularVerse(verse) {
 }
 
 function getFeaturedVerse(verse) {
-    return '<span class="featured">' + verse + '</span>';
+  return '<span class="featured">' + verse + '</span>';
 }
 
-module.exports = function setLyrics(past, curr, next) {
+function setLyrics(past, curr, next) {
   const pastDiv = document.getElementById('past'),
-      currDiv = document.getElementById('curr'),
-      nextDiv = document.getElementById('next');
+    currDiv = document.getElementById('curr'),
+    nextDiv = document.getElementById('next');
 
   pastDiv.innerHTML = getRegularVerse(past.innerHTML);
   currDiv.innerHTML = getFeaturedVerse(curr.innerHTML);
   nextDiv.innerHTML = getRegularVerse(next.innerHTML);
 };
+
+export default setLyrics;

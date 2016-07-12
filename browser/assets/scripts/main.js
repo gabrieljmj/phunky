@@ -1,11 +1,11 @@
-const Scripts = './assets/dist/scripts',
-  musixmatch = require(Scripts + '/musixmatch.js'),
-  youtube = require(Scripts + '/youtube.js'),
-  nodeSpotifyWebHelper = require('node-spotify-webhelper'),
-  spotify = new nodeSpotifyWebHelper.SpotifyWebHelper(),
-  warn = require(Scripts + '/warn.js'),
-  setLyrics = require(Scripts + '/setlyrics.js'),
-  loadTabs = require(Scripts + '/tabs.js');
+import loadTabs from './assets/dist/scripts/tabs.js';
+import musixmatch from './assets/dist/scripts/musixmatch.js';
+import youtube from './assets/dist/scripts/youtube.js';
+import warn from './assets/dist/scripts/warn.js';
+import setLyrics from './assets/dist/scripts/setlyrics.js';
+import nodeSpotifyWebHelper from 'node-spotify-webhelper';
+
+const spotify = new nodeSpotifyWebHelper.SpotifyWebHelper();
 
 window.onload = function() {
   /**

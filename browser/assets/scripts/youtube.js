@@ -1,7 +1,11 @@
-const googleapi = require('googleapis'),
-  client_id = require('../../../../config.json').clients.youtube;
+import googleapi from 'googleapis';
 
-module.exports = function getYouTubeVideoId(artist, trackName) {
+// Import with JSON :/
+import config from '../../../../config.json';
+
+const client_id = config.clients.youtube;
+
+function getYouTubeVideoId(artist, trackName) {
   const youtube = googleapi.youtube({
     version: 'v3',
     auth: client_id
@@ -31,3 +35,5 @@ module.exports = function getYouTubeVideoId(artist, trackName) {
     });
   });
 };
+
+export default getYouTubeVideoId;

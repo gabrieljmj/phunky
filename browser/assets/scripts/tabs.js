@@ -1,4 +1,4 @@
-module.exports = function loadTabs() {
+function loadTabs() {
   let tabs = document.querySelectorAll('.tab-btn');
 
   for (let k = 0; k < tabs.length; k++) {
@@ -19,3 +19,5 @@ module.exports = function loadTabs() {
     });
   }
 };
+
+export default loadTabs;

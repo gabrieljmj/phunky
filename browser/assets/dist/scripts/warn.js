@@ -1,5 +1,8 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 var lyrics = {
   show: function show() {
     document.getElementById('lyrics-container').style.display = 'block';
@@ -9,7 +12,7 @@ var lyrics = {
   }
 };
 
-module.exports = {
+exports.default = {
   add: function add(id, msg) {
     return new Promise(function (resolve) {
       if (!document.getElementById('warning-' + id)) {

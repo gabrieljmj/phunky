@@ -1,20 +1,39 @@
 'use strict';
 
-var Scripts = './assets/dist/scripts',
-    musixmatch = require(Scripts + '/musixmatch.js'),
-    youtube = require(Scripts + '/youtube.js'),
-    nodeSpotifyWebHelper = require('node-spotify-webhelper'),
-    spotify = new nodeSpotifyWebHelper.SpotifyWebHelper(),
-    warn = require(Scripts + '/warn.js'),
-    setLyrics = require(Scripts + '/setlyrics.js'),
-    loadTabs = require(Scripts + '/tabs.js');
+var _tabs = require('./assets/dist/scripts/tabs.js');
+
+var _tabs2 = _interopRequireDefault(_tabs);
+
+var _musixmatch = require('./assets/dist/scripts/musixmatch.js');
+
+var _musixmatch2 = _interopRequireDefault(_musixmatch);
+
+var _youtube = require('./assets/dist/scripts/youtube.js');
+
+var _youtube2 = _interopRequireDefault(_youtube);
+
+var _warn = require('./assets/dist/scripts/warn.js');
+
+var _warn2 = _interopRequireDefault(_warn);
+
+var _setlyrics = require('./assets/dist/scripts/setlyrics.js');
+
+var _setlyrics2 = _interopRequireDefault(_setlyrics);
+
+var _nodeSpotifyWebhelper = require('node-spotify-webhelper');
+
+var _nodeSpotifyWebhelper2 = _interopRequireDefault(_nodeSpotifyWebhelper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var spotify = new _nodeSpotifyWebhelper2.default.SpotifyWebHelper();
 
 window.onload = function () {
   /**
    * Tabs
    */
   (function () {
-    loadTabs();
+    (0, _tabs2.default)();
   })();
 
   /**
@@ -62,12 +81,12 @@ window.onload = function () {
       spotify.getStatus(function (err, res) {
         // Check if there's a communication error with spotifywebhelper
         if (err) {
-          warn.add('communication-error', 'Communication error with Spotify! Restart it!');
+          _warn2.default.add('communication-error', 'Communication error with Spotify! Restart it!');
 
           throw err;
         }
 
-        warn.remove('communication-error');
+        _warn2.default.remove('communication-error');
 
         localStorage.setItem('curr', '' + res.playing_position);
 
@@ -81,7 +100,7 @@ window.onload = function () {
 
             // If is in the start of the song, show 2 verses
             if (lIndex === 0) {
-              setLyrics(document.createElement('text'), lyrics[lIndex], lyrics[lIndex + 1]);
+              (0, _setlyrics2.default)(document.createElement('text'), lyrics[lIndex], lyrics[lIndex + 1]);
               document.getElementById(lyrics[lIndex].attributes.start.value.replace('.', 'p')).classList.add('featured-verse');
             } else {
               var allVerses = document.querySelectorAll('.verse'),
@@ -101,28 +120,28 @@ window.onload = function () {
 
               var next = lyrics[lIndex + 2] || nextText;
 
-              setLyrics(lyrics[lIndex], lyrics[lIndex + 1], next);
+              (0, _setlyrics2.default)(lyrics[lIndex], lyrics[lIndex + 1], next);
             }
           }
         } else {
-          warn.removeAll();
+          _warn2.default.removeAll();
 
           document.getElementById('song-name').innerHTML = res.track.track_resource.name;
           document.getElementById('artist-name').innerHTML = res.track.artist_resource.name;
           document.title = '♫ ' + res.track.track_resource.name + ' - ' + res.track.artist_resource.name + ' - phunky';
 
           // Searches on YouTube for a video regisred on musixmatch
-          youtube(res.track.artist_resource.name, res.track.track_resource.name).then(function (videos) {
+          (0, _youtube2.default)(res.track.artist_resource.name, res.track.track_resource.name).then(function (videos) {
             catchLyrics(0);
 
             function catchLyrics(video) {
-              musixmatch(videos[video].id.videoId).then(function (mxmRes) {
+              (0, _musixmatch2.default)(videos[video].id.videoId).then(function (mxmRes) {
 
                 // If there's no lyrics, check for the next
                 if (mxmRes.data === '' || mxmRes.data === null) {
                   // but if nothing is found, tell user
                   if (videos.length - 1 === video) {
-                    warn.add('no-lyrics', 'No lyrics found for this song :(').then(function () {
+                    _warn2.default.add('no-lyrics', 'No lyrics found for this song :(').then(function () {
                       document.getElementById('lyrics-container').classList.add('invisible');
                     });
 
@@ -134,7 +153,7 @@ window.onload = function () {
                   catchLyrics(video + 1);
                 }
 
-                warn.remove('no-lyrics');
+                _warn2.default.remove('no-lyrics');
                 localStorage.setItem('has-lyrics', '1');
 
                 document.getElementById('lyrics-container').style.display = 'block';

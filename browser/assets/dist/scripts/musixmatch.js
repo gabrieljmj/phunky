@@ -1,5 +1,8 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 var axios = require('axios'),
     API_URL = 'http://extension.musixmatch.com';
 
@@ -39,6 +42,8 @@ function _encodeVideoId(videoId) {
   return l(videoId);
 };
 
-module.exports = function getLyrics(videoId) {
+function getLyrics(videoId) {
   return axios.get(_buildUrlForRequest(videoId));
 };
+
+exports.default = getLyrics;
