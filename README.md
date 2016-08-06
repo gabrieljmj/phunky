@@ -7,9 +7,9 @@
 ## Running (dev mode)
 Be sure to have NodeJS [installed](https://nodejs.org/en/download/).
 1. Clone or download the zip of the app, than install all dependencies
-```cli
-$ npm install
-```
+    ```cli
+    $ npm install
+    ```
 
 2. Create a API key for browser without domain [here](https://console.developers.google.com/apis/credentials).
  1. Go to: [Google's APIs Credential Page](https://console.developers.google.com/apis/credentials)
@@ -18,22 +18,21 @@ $ npm install
  4. Enter a unique name, leave the 'Accept requests from these HTTP referrers (web site)' field blank and click 'create'
 3. Turn on the YouTube Data API [here](https://console.developers.google.com/apis/api/youtube/overview).
 4. Create a config file called ```config.json``` in the root:
-```json
-{
-  "clients": {
-    "youtube": "[YOUR_KEY_HERE]"
-  }
-}
-```
-
+    ```json
+    {
+      "clients": {
+        "youtube": "[YOUR_KEY_HERE]"
+      }
+    }
+    ```
 5. [Install electron](http://electron.atom.io/) and run
-```cli
-$ npm start
-```
-or
-```cli
-$ electron app/main.js
-```
+    ```cli
+    $ npm start
+    ```
+    or
+    ```cli
+    $ electron app/main.js
+    ```
 
 ## License
 Under [MIT License](https://github.com/gabrieljmj/phunky/blob/development/LICENSE).
