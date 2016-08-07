@@ -1,6 +1,6 @@
 'use strict';
 
-const BrowserWindow = require('browser-window');
+const {BrowserWindow} = require('electron');
 
 class PhunkyWindow {
   create(winOptions) {
@@ -13,7 +13,7 @@ class PhunkyWindow {
     },
       win = new BrowserWindow(opts);
 
-    win.loadUrl('file://' + __dirname + '/../browser/index.html');
+    win.loadURL('file://' + __dirname + '/../browser/index.html');
 
     win.webContents.on('did-finish-load', function() {
       win.show();
