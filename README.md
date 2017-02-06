@@ -6,6 +6,7 @@
 
 ## Running (dev mode)
 Be sure to have NodeJS [installed](https://nodejs.org/en/download/).
+
 1. Clone or download the zip of the app, than install all dependencies
 ```cli
 $ npm install
