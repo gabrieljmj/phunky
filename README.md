@@ -7,9 +7,9 @@
 ## Running (dev mode)
 Be sure to have NodeJS [installed](https://nodejs.org/en/download/).
 1. Clone or download the zip of the app, than install all dependencies
-    ```cli
-    $ npm install
-    ```
+```cli
+$ npm install
+```
 
 2. Create a API key for browser without domain [here](https://console.developers.google.com/apis/credentials).
  1. Go to: [Google's APIs Credential Page](https://console.developers.google.com/apis/credentials)
