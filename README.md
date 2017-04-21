@@ -1,4 +1,7 @@
 <h1 align="center"><img src="https://cdn.rawgit.com/gabrieljmj/phunky/development/browser/assets/images/phunky-icon.svg" width="100"><br>phunky</h1>
+
+**Deprecated** - **musixmatch** have realesed their own [desktop app](https://about.musixmatch.com/desktop-app) for **Spotify**.
+
 [Spotify does not support anymore MusixMatch lyrics](http://www.billboard.com/articles/news/7392812/lyrics-spotify-musixmatch-gone-for-now). Because of their delay to release a new tool, I've been working on it. Feel free to contribute.
 
 <p align="center"><img src="http://i.imgur.com/PkUycLF.png"></p>
